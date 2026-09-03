@@ -1,144 +1,196 @@
-import { useEffect, useState } from 'react'
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
+import { useState } from 'react'
+import BuildTimeline from './components/BuildTimeline'
+import HeroCarousel from './components/HeroCarousel'
+import PanelLab from './components/PanelLab'
+import ProjectReel from './components/ProjectReel'
+import SectionRail from './components/SectionRail'
+import { comparisons, faqs, fieldNotes, laboratoryData, whatsapp } from './data/company'
 import './App.css'
 
-const specs = [
-  ['λ', 'Aislación térmica', '0,221', 'W/m·K', 'Conductividad térmica según ficha técnica.'],
-  ['dB', 'Aislación acústica', 'hasta 44', 'dB', 'En panel de 120 mm de espesor.'],
-  ['FR', 'Resistencia al fuego', '2', 'horas', 'Placas de fibrocemento, grado A-1.'],
-  ['30', 'Avance de obra', '30', 'm²/día-op.', 'Sin necesidad de revoque.'],
-]
-
-const applications = [
-  'Viviendas y ampliaciones', 'Oficinas y campamentos', 'Galpones y cerramientos',
-  'Edificios y hospitales', 'Divisiones interiores', 'Mesones y soluciones especiales',
-]
-
-const faqs = [
-  ['¿Qué dimensiones tiene cada panel?', 'Cada panel mide 2,44 m × 0,615 m y cubre 1,50 m². Se fabrica en espesores de 60, 75, 100 y 120 mm, según el uso del muro.'],
-  ['¿Dónde se puede usar el sistema?', 'Sirve para muros portantes y cerramientos en viviendas, oficinas, galpones, campamentos, edificios, hospitales y bardas. Se combina con estructuras metálicas, de hormigón o madera.'],
-  ['¿Cómo solicito una cotización?', 'Envíanos los planos editables en AutoCAD o formato vectorial por WhatsApp o correo. Con esa información revisamos tu proyecto y preparamos una cotización.'],
-]
-
-function ArrowIcon() {
-  return <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+function Arrow({ direction = 'right' }) {
+  const path = direction === 'up' ? 'M12 20V5m0 0-6 6m6-6 6 6' : 'M4 12h15m0 0-6-6m6 6-6 6'
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d={path} fill="none" stroke="currentColor" strokeWidth="1.8" /></svg>
 }
 
 function Brand() {
-  return <a className="brand" href="#inicio" aria-label="Construpanel, inicio"><span className="brand-mark" aria-hidden="true">C</span><span>CONSTRU<b>PANEL</b></span></a>
+  return (
+    <a className="brand" href="#inicio" aria-label="Construpanel, ir al inicio">
+      <span className="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span className="brand-word">CONSTRU<b>PANEL</b></span>
+    </a>
+  )
 }
 
-function App() {
-  const [openFaq, setOpenFaq] = useState(null)
+const navItems = [
+  ['empresa', 'Empresa'],
+  ['laboratorio', 'El panel'],
+  ['caso', 'Caso 40 días'],
+  ['obras', 'Obras'],
+  ['datos', 'Ficha técnica'],
+]
 
-  useEffect(() => {
-    document.documentElement.classList.add('has-motion')
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.12 })
-    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element))
-    return () => {
-      observer.disconnect()
-      document.documentElement.classList.remove('has-motion')
-    }
-  }, [])
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <main>
+    <MotionConfig reducedMotion="user">
+      <SectionRail />
       <header className="site-header">
         <Brand />
         <nav className="main-nav" aria-label="Navegación principal">
-          <a href="#sistema">El sistema</a><a href="#aplicaciones">Aplicaciones</a><a href="#tecnica">Ficha técnica</a>
+          {navItems.map(([id, label]) => <a href={`#${id}`} key={id}>{label}</a>)}
         </nav>
-        <a className="header-contact" href="https://wa.me/59175022244" target="_blank" rel="noreferrer">Cotizar proyecto <ArrowIcon /></a>
+        <a className="header-cta" href={whatsapp} target="_blank" rel="noreferrer"><span>Iniciar proyecto</span><Arrow /></a>
+        <button className={`menu-button ${menuOpen ? 'is-open' : ''}`} type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}><i></i><i></i></button>
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav className="mobile-menu" aria-label="Navegación móvil" initial={{ clipPath: 'inset(0 0 100% 0)' }} animate={{ clipPath: 'inset(0)' }} exit={{ clipPath: 'inset(0 0 100% 0)' }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}>
+              {navItems.map(([id, label], index) => <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{label}</a>)}
+              <a href={whatsapp} target="_blank" rel="noreferrer"><span>→</span>Cotizar por WhatsApp</a>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
-      <section className="hero-section" id="inicio">
-        <div className="hero-copy reveal">
-          <p className="eyebrow"><span></span> Santa Cruz · Bolivia</p>
-          <h1>Construir más rápido también es construir mejor.</h1>
-          <p className="hero-intro">Muros prefabricados termoacústicos para obras que necesitan avanzar sin perder precisión.</p>
-          <div className="hero-actions">
-            <a className="button button-dark" href="https://wa.me/59175022244?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20con%20Construpanel." target="_blank" rel="noreferrer">Cotizar mi proyecto <ArrowIcon /></a>
-            <a className="text-link" href="#tecnica">Ver ficha técnica <ArrowIcon /></a>
+      <main>
+        <HeroCarousel />
+
+        <section className="manifesto" id="empresa">
+          <div className="section-code"><span>01</span><p>Empresa / sistema</p></div>
+          <div className="manifesto-intro">
+            <p>Empresa boliviana dedicada a la producción, venta e instalación de paneles prefabricados para construcción civil.</p>
+            <motion.h2 initial={{ backgroundSize: '0% 100%' }} whileInView={{ backgroundSize: '100% 100%' }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}>Una pared no debería detener una obra.</motion.h2>
           </div>
-          <p className="hero-note">Envíanos tus planos editables en AutoCAD o formato vectorial.</p>
-        </div>
-        <div className="hero-visual reveal" aria-label="Esquema de corte de un panel Construpanel" role="img">
-          <div className="visual-label visual-label-top">Fibrocemento<br />4 mm</div>
-          <div className="visual-label visual-label-right">Núcleo termoacústico</div>
-          <div className="panel-drawing">
-            <div className="panel-face"></div>
-            <div className="panel-core"><span></span><span></span><span></span><span></span><span></span></div>
-            <div className="panel-face"></div>
-            <div className="panel-measurement"><i></i> 60–120 mm</div>
+
+          <div className="manifesto-grid">
+            <div className="manifesto-story">
+              <span className="micro-label">QUÉ RESOLVEMOS</span>
+              <p>Construpanel concentra estructura de muro, aislación y superficie de acabado en una pieza modular. Menos carga, menos etapas húmedas y una obra que puede avanzar desde el primer panel.</p>
+              <p>El sistema se integra con estructuras de acero, hormigón o madera y puede aplicarse en viviendas, oficinas, divisiones industriales, campamentos y soluciones especiales.</p>
+            </div>
+            <ol className="service-sequence">
+              <li><span>01</span><div><b>Producimos</b><p>Paneles de 2,44 × 0,615 m en cuatro espesores.</p></div></li>
+              <li><span>02</span><div><b>Dimensionamos</b><p>Revisamos planos y definimos cantidades para cada proyecto.</p></div></li>
+              <li><span>03</span><div><b>Instalamos</b><p>Ejecutamos el montaje y resolvemos encuentros en obra.</p></div></li>
+            </ol>
           </div>
-          <div className="visual-caption"><span>Sección constructiva</span><b>01</b></div>
-        </div>
-      </section>
 
-      <section className="statement-section" id="sistema">
-        <div className="section-topline reveal"><p className="eyebrow">El sistema</p><p>Producción, venta e instalación de paneles prefabricados.</p></div>
-        <div className="statement-grid">
-          <h2 className="reveal">Menos etapas en obra. Más control sobre el resultado.</h2>
-          <div className="statement-copy reveal"><p>Construpanel reemplaza el muro tradicional por una solución lista para montar. Su núcleo de hormigón alivianado con poliestireno expandido está revestido por dos placas de fibrocemento libres de asbesto.</p><p>El resultado es un muro más ligero, térmico y acústico, compatible con estructuras de hormigón, metal o madera.</p></div>
-        </div>
-      </section>
+          <div className="fact-ribbon" aria-label="Cifras principales del sistema">
+            <div><span>FORMATO</span><b>2,44 × 0,615</b><small>metros</small></div>
+            <div><span>SUPERFICIE</span><b>1,50</b><small>m² / panel</small></div>
+            <div><span>RENDIMIENTO</span><b>30</b><small>m² / jornal-op.</small></div>
+            <div><span>PESO INICIAL</span><b>40,33</b><small>kg / m²</small></div>
+          </div>
+        </section>
 
-      <section className="specs-section" id="tecnica">
-        <div className="section-heading reveal"><p className="eyebrow">Datos que se miden</p><h2>Desempeño para decidir con certeza.</h2></div>
-        <div className="spec-grid">
-          {specs.map(([mark, label, value, unit, note], index) => <article className="spec-card reveal" style={{ '--index': index }} key={label}><span className="spec-mark">{mark}</span><p>{label}</p><strong>{value} <small>{unit}</small></strong><span className="spec-note">{note}</span></article>)}
-        </div>
-        <div className="comparison reveal">
-          <div><p className="eyebrow">Frente al ladrillo</p><h3>Más avance, menos peso.</h3></div>
-          <dl>
-            <div><dt>Avance por jornal</dt><dd>Desde 30 m² <span>vs. hasta 10 m²</span></dd></div>
-            <div><dt>Peso por m²</dt><dd>Desde 40,33 kg <span>vs. 200 kg</span></dd></div>
-            <div><dt>Reutilización</dt><dd>Hasta 80% <span>vs. 0%</span></dd></div>
-          </dl>
-        </div>
-      </section>
+        <section className="laboratory section-pad" id="laboratorio">
+          <div className="section-head">
+            <div className="section-code"><span>02</span><p>Laboratorio del panel</p></div>
+            <div><p className="section-kicker">NO TODOS LOS MUROS PIDEN LO MISMO</p><h2>Cambia el espesor.<br />Cambia el desempeño.</h2></div>
+            <p className="section-summary">Explora el panel en 3D, separa sus capas y calcula una referencia de material, peso y jornadas para tu superficie.</p>
+          </div>
+          <PanelLab />
+          <div className="anatomy-strip">
+            <div><span>CAPA 01</span><b>Fibrocemento</b><p>Dos caras de 4 mm, libres de asbesto y listas para acabado.</p></div>
+            <div><span>NÚCLEO 02</span><b>Hormigón alivianado</b><p>Aporta cuerpo con una fracción del peso de un muro tradicional.</p></div>
+            <div><span>AISLANTE 03</span><b>Poliestireno expandido</b><p>Integra aislación térmica dentro del propio elemento constructivo.</p></div>
+          </div>
+        </section>
 
-      <section className="applications-section" id="aplicaciones">
-        <div className="applications-media reveal" aria-hidden="true"><div className="grid-plane grid-plane-back"></div><div className="grid-plane grid-plane-front"></div><p>2,44 m × 0,615 m</p><span>Panel modular</span></div>
-        <div className="applications-copy reveal">
-          <p className="eyebrow">Donde hace falta avanzar</p><h2>Un mismo sistema para obras de escalas distintas.</h2><p>Desde una vivienda hasta una división interna en un galpón, los paneles se adaptan a la estructura y a las condiciones de cada proyecto.</p>
-          <ul>{applications.map((application) => <li key={application}>{application}<ArrowIcon /></li>)}</ul>
-        </div>
-      </section>
+        <section className="case-section section-pad" id="caso">
+          <div className="case-copy">
+            <div className="section-code section-code-light"><span>03</span><p>Caso documentado</p></div>
+            <p className="section-kicker">CASA MODELO / SANTA CRUZ</p>
+            <h2>De la base a una casa de 100 m² en 40 días.</h2>
+            <p>Desliza el tiempo para recorrer un proyecto llave en mano realizado con paneles. La configuración fue autoportante hasta 3 m y sin columnas; esa solución corresponde a este caso y debe validarse mediante cálculo en cada proyecto.</p>
+          </div>
+          <BuildTimeline />
+        </section>
 
-      <section className="process-section">
-        <div className="section-heading reveal"><p className="eyebrow">Una obra empieza antes del primer panel</p><h2>Para cotizar, necesitamos entender tu proyecto.</h2></div>
-        <ol className="process-list">
-          <li className="reveal"><span>01</span><h3>Comparte tus planos</h3><p>Recibimos el proyecto editable en AutoCAD o formato vectorial.</p></li>
-          <li className="reveal"><span>02</span><h3>Revisamos la solución</h3><p>Definimos espesores, cantidades y necesidades de instalación.</p></li>
-          <li className="reveal"><span>03</span><h3>Recibes tu cotización</h3><p>Te acompañamos con una propuesta clara para iniciar la obra.</p></li>
-        </ol>
-      </section>
+        <section className="works section-pad" id="obras">
+          <div className="section-head works-head">
+            <div className="section-code"><span>04</span><p>Archivo de obras</p></div>
+            <div><p className="section-kicker">NO SON RENDERS. SON OBRAS.</p><h2>El panel puesto a trabajar.</h2></div>
+            <p className="section-summary">Oficinas temporales, galpones, espacios comerciales y construcción en altura. Arrastra el carrusel para recorrer el archivo real.</p>
+          </div>
+          <ProjectReel />
+        </section>
 
-      <section className="faq-section">
-        <div className="faq-heading reveal"><p className="eyebrow">Preguntas frecuentes</p><h2>Información clara para planificar mejor.</h2><a className="text-link" href="mailto:contacto@construpanel.com.bo">Escribir al equipo <ArrowIcon /></a></div>
-        <div className="faq-list reveal">
-          {faqs.map(([question, answer], index) => {
-            const isOpen = openFaq === index
-            return <article className={isOpen ? 'faq-item is-open' : 'faq-item'} key={question}><button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} aria-expanded={isOpen}><span>{question}</span><b aria-hidden="true">{isOpen ? '−' : '+'}</b></button><div className="faq-answer"><p>{answer}</p></div></article>
-          })}
-        </div>
-      </section>
+        <section className="field-section">
+          <div className="field-title">
+            <span>05 / CUADERNO DE CAMPO</span>
+            <h2>Así se comporta<br />cuando entra a obra.</h2>
+            <p>No solo mostramos el resultado. Estas imágenes documentan corte, traslado, instalaciones, acabados y cubierta.</p>
+          </div>
+          <div className="field-notes">
+            {fieldNotes.map((note, index) => (
+              <motion.figure className={`field-note field-note-${index + 1}`} key={note.title} initial={{ opacity: 0.45 }} whileInView={{ opacity: 1 }} viewport={{ amount: 0.45 }}>
+                <div className={note.rotate ? 'rotate-photo' : ''}><img src={note.image} alt={note.title} loading="lazy" decoding="async" /></div>
+                <figcaption><span>{String(index + 1).padStart(2, '0')}</span><b>{note.title}</b><p>{note.text}</p></figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </section>
 
-      <section className="contact-section"><div className="contact-grid reveal"><p className="eyebrow">Construpanel Bolivia</p><h2>Tu obra no tiene por qué avanzar al ritmo de siempre.</h2><a className="button button-light" href="https://wa.me/59175022244?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20con%20Construpanel." target="_blank" rel="noreferrer">Hablar por WhatsApp <ArrowIcon /></a></div></section>
+        <section className="data-section section-pad" id="datos">
+          <div className="data-heading">
+            <div className="data-sheet-mark"><b>CP</b><span>FT—01<br />DATOS DE FÁBRICA</span></div>
+            <div><p className="section-kicker">FICHA COMPARADA / MATERIAL INFORMATIVO</p><h2>Datos para especificar.</h2></div>
+            <p>Las cifras publicadas por Construpanel, puestas frente al muro de ladrillo descrito en su documentación técnica.</p>
+          </div>
+
+          <div className="comparison-table" role="table" aria-label="Comparación entre Construpanel y muro de ladrillo">
+            <div className="comparison-row comparison-header" role="row"><span role="columnheader">VARIABLE</span><b role="columnheader">CONSTRUPANEL</b><b role="columnheader">LADRILLO</b></div>
+            {comparisons.map((item, index) => <motion.div className="comparison-row" role="row" key={item.label} initial={{ '--fill': '0%' }} whileInView={{ '--fill': `${100 - index * 7}%` }} viewport={{ once: true, amount: 0.7 }} transition={{ duration: 0.75, delay: index * 0.06 }}><span role="cell">{item.label}</span><b role="cell">{item.panel}</b><em role="cell">{item.brick}</em><i aria-hidden="true"></i></motion.div>)}
+          </div>
+
+          <div className="technical-block">
+            <div className="technical-title"><span>ENSAYOS Y PROPIEDADES DECLARADAS</span><h3>Ficha detrás<br />del panel.</h3><p>Valores declarados en la documentación de la empresa. Deben contrastarse con la especificación y cálculo de cada obra.</p></div>
+            <dl className="technical-list">
+              {laboratoryData.map(([label, value], index) => <div key={label}><dt><span>{String(index + 1).padStart(2, '0')}</span>{label}</dt><dd>{value}</dd></div>)}
+            </dl>
+          </div>
+
+          <div className="fire-note">
+            <span className="fire-mark">A1</span>
+            <div><p>COMPORTAMIENTO AL FUEGO</p><h3>Hasta 2 horas declaradas en la documentación.</h3></div>
+            <p>Las placas de fibrocemento se describen como Grado A y Euroclase A1. La información de resistencia del conjunto se presenta como dato de fábrica; solicita la documentación aplicable a tu proyecto.</p>
+          </div>
+        </section>
+
+        <section className="applications">
+          <div className="applications-title"><span>07 / UN MÓDULO, DISTINTAS ESCALAS</span><h2>¿Dónde puede entrar?</h2></div>
+          <div className="application-list">
+            {['Viviendas y ampliaciones', 'Oficinas y campamentos', 'Galpones y divisiones', 'Edificios y hospitales', 'Restaurantes y comercio', 'Cubiertas y soluciones especiales'].map((item, index) => <a href={whatsapp} target="_blank" rel="noreferrer" key={item}><span>{String(index + 1).padStart(2, '0')}</span><b>{item}</b><i>Consultar <Arrow /></i></a>)}
+          </div>
+        </section>
+
+        <section className="faq-section section-pad">
+          <div className="faq-intro"><span>ANTES DE CONSTRUIR</span><h2>Lo que conviene saber.</h2><p>Una respuesta clara antes de que el proyecto entre a cómputo.</p></div>
+          <div className="faq-list">
+            {faqs.map(([question, answer], index) => {
+              const isOpen = openFaq === index
+              return <article className={isOpen ? 'is-open' : ''} key={question}><button type="button" aria-expanded={isOpen} onClick={() => setOpenFaq(isOpen ? null : index)}><span>{String(index + 1).padStart(2, '0')}</span><b>{question}</b><i>{isOpen ? '−' : '+'}</i></button><div className="faq-answer"><p>{answer}</p></div></article>
+            })}
+          </div>
+        </section>
+
+        <section className="contact-section" id="contacto">
+          <div className="contact-blueprint" aria-hidden="true"><i></i><i></i><i></i><i></i><span>0,615</span></div>
+          <div className="contact-copy"><span>08 / MESA DE PLANOS</span><h2>Del archivo<br />a la obra.</h2><p>Envíanos los planos editables de tu proyecto. Revisaremos superficie, espesores, encuentros y alcance de instalación.</p><a href={whatsapp} target="_blank" rel="noreferrer">Enviar planos por WhatsApp <Arrow /></a></div>
+          <div className="contact-checklist"><span>PARA PREPARAR LA COTIZACIÓN</span><ul><li><b>01</b>Plano AutoCAD o vectorial</li><li><b>02</b>Ubicación del proyecto</li><li><b>03</b>Uso de cada ambiente</li><li><b>04</b>Alcance de instalación</li></ul><div><a href="tel:+59175022244">+591 750 22244</a><a href="mailto:contacto@construpanel.com.bo">contacto@construpanel.com.bo</a></div></div>
+        </section>
+      </main>
 
       <footer className="site-footer">
         <Brand />
-        <address>Tercer Anillo Externo, entre Av. Virgen de Cotoca y Av. Brasil<br />Calle Ángel Chávez, esq. Padre José M. Carrillo · Santa Cruz, Bolivia</address>
-        <div className="footer-links"><a href="tel:+59175022244">+591 750 22244</a><a href="mailto:contacto@construpanel.com.bo">contacto@construpanel.com.bo</a></div>
+        <address>Tercer Anillo Externo, entre Av. Virgen de Cotoca y Av. Brasil<br />Calle Ángel Chávez esq. Padre José M. Carrillo · Santa Cruz, Bolivia</address>
+        <p>PRODUCCIÓN · VENTA · INSTALACIÓN</p>
+        <a href="#inicio" aria-label="Volver al inicio">Volver arriba <Arrow direction="up" /></a>
       </footer>
-    </main>
+    </MotionConfig>
   )
 }
 

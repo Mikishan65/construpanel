@@ -1,7 +1,23 @@
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');
+}
+
 :root {
-  color: #273032;
-  background: #f7f6f2;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #10263a;
+  background: #e9edf0;
+  font-family: 'Manrope Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -10,7 +26,8 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; }
+body { min-width: 320px; margin: 0; }
 button, a { font: inherit; }
 a { color: inherit; }
 button { cursor: pointer; }
+img { max-width: 100%; }
