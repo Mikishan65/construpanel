@@ -2,6 +2,16 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
+## Desarrollo con Docker
+
+Inicia la aplicación con:
+
+```bash
+docker compose up --build
+```
+
+Después, ábrela en [http://localhost:5173](http://localhost:5173). El directorio del proyecto se monta como volumen y Vite recarga los cambios automáticamente (HMR). Para detener los contenedores, usa `docker compose down`.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
