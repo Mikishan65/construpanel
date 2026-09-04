@@ -210,16 +210,29 @@ function App() {
             </div>
           </div>
 
-          <div className="comparison-table" role="table" aria-label="Comparación entre Construpanel y muro de ladrillo">
-            <div className="comparison-row comparison-header" role="row"><span role="columnheader">VARIABLE</span><b role="columnheader">CONSTRUPANEL</b><b role="columnheader">LADRILLO</b></div>
-            {comparisons.map((item, index) => <motion.div className="comparison-row" role="row" key={item.label} initial={{ '--fill': '0%' }} whileInView={{ '--fill': `${100 - index * 7}%` }} viewport={{ once: true, amount: 0.7 }} transition={{ duration: 0.75, delay: index * 0.06 }}><span role="cell">{item.label}</span><b role="cell">{item.panel}</b><em role="cell">{item.brick}</em><i aria-hidden="true"></i></motion.div>)}
-          </div>
+          <div className="data-grid-pair">
+            {/* Columna 1: Comparativa Construpanel vs Ladrillo */}
+            <div className="data-col">
+              <div className="data-subhead">
+                <span className="micro-label">TABLA COMPARATIVA</span>
+                <h3>Construpanel vs Ladrillo</h3>
+              </div>
+              <div className="comparison-table" role="table" aria-label="Comparación entre Construpanel y muro de ladrillo">
+                <div className="comparison-row comparison-header" role="row"><span role="columnheader">VARIABLE</span><b role="columnheader">CONSTRUPANEL</b><b role="columnheader">LADRILLO</b></div>
+                {comparisons.map((item, index) => <motion.div className="comparison-row" role="row" key={item.label} initial={{ '--fill': '0%' }} whileInView={{ '--fill': `${100 - index * 7}%` }} viewport={{ once: true, amount: 0.7 }} transition={{ duration: 0.75, delay: index * 0.06 }}><span role="cell">{item.label}</span><b role="cell">{item.panel}</b><em role="cell">{item.brick}</em><i aria-hidden="true"></i></motion.div>)}
+              </div>
+            </div>
 
-          <div className="technical-block">
-            <div className="technical-title"><span>ENSAYOS Y PROPIEDADES DECLARADAS</span><h3>Ficha detrás<br />del panel.</h3><p>Valores declarados en la documentación de la empresa. Deben contrastarse con la especificación y cálculo de cada obra.</p></div>
-            <dl className="technical-list">
-              {laboratoryData.map(([label, value], index) => <div key={label}><dt><span>{String(index + 1).padStart(2, '0')}</span>{label}</dt><dd>{value}</dd></div>)}
-            </dl>
+            {/* Columna 2: Ficha detrás del panel (Ensayos y propiedades) */}
+            <div className="data-col">
+              <div className="data-subhead">
+                <span className="micro-label">ENSAYOS Y PROPIEDADES DECLARADAS</span>
+                <h3>Ficha Detrás del Panel</h3>
+              </div>
+              <dl className="technical-list">
+                {laboratoryData.map(([label, value], index) => <div key={label}><dt><span>{String(index + 1).padStart(2, '0')}</span>{label}</dt><dd>{value}</dd></div>)}
+              </dl>
+            </div>
           </div>
 
           <div className="fire-note">
