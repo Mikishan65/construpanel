@@ -5,7 +5,7 @@ const sections = [
   ['inicio', 'Inicio'],
   ['empresa', 'Empresa'],
   ['laboratorio', 'Panel'],
-  ['caso', '40 días'],
+  ['caso', '7 días'],
   ['obras', 'Obras'],
   ['datos', 'Datos'],
   ['contacto', 'Contacto'],

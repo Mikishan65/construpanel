@@ -30,7 +30,7 @@ export default function BuildTimeline() {
             transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
           />
         </AnimatePresence>
-        <span className="timeline-stamp">CASA MODELO / 100 M²</span>
+        <span className="timeline-stamp">ENTREGA EN 7 DÍAS / SISTEMA TERMOACÚSTICO</span>
         <strong>{active.day}</strong>
       </div>
       <div className="timeline-panel">

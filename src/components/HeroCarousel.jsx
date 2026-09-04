@@ -6,7 +6,7 @@ function Arrow({ previous = false }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d={previous ? 'm15 5-7 7 7 7M8 12h12' : 'm9 5 7 7-7 7M4 12h12'} fill="none" stroke="currentColor" strokeWidth="1.8" /></svg>
 }
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ onWhatsAppClick, currentWhatsAppUrl }) {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1)
   const [paused, setPaused] = useState(false)
@@ -77,7 +77,17 @@ export default function HeroCarousel() {
             <p>{slide.overline}</p>
             <h1>{slide.title}</h1>
             <span>{slide.description}</span>
-            <div className="hero-actions"><a href={whatsapp} target="_blank" rel="noreferrer">Cotizar con planos <Arrow /></a><a href="#caso">Ver el caso de 40 días</a></div>
+            <div className="hero-actions">
+              <a
+                href={currentWhatsAppUrl || whatsapp}
+                onClick={(e) => onWhatsAppClick ? onWhatsAppClick(e, 'Hola, quiero cotizar un proyecto con planos en Construpanel.') : undefined}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Cotizar con planos <Arrow />
+              </a>
+              <a href="#caso">Demostración en 7 días</a>
+            </div>
           </motion.div>
         </AnimatePresence>
         <div className="hero-module"><span>FORMATO DE PANEL</span><b>2,44 × 0,615 m</b><small>1,50 m² por pieza</small></div>

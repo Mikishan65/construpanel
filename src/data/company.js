@@ -17,40 +17,83 @@ import panelTransport from '../assets/projects/panel-transport.jpg'
 import finishedCoating from '../assets/projects/finished-coating.jpg'
 import roofInterior from '../assets/projects/roof-interior.jpg'
 
+// Nuevas fotos reales del proyecto Construpanel
+import obraTerminada from '../assets/Obra terminada.jpg'
+import entradaObra from '../assets/Entrada de la obra.jpg'
+import muroConLogo from '../assets/muro con logo.jpeg'
+import techoReal from '../assets/techo.jpeg'
+import caminoConstruido from '../assets/Camino construido.jpeg'
+import techoLamina from '../assets/techo construido con laminaq.jpeg'
+import industrialSilos from '../assets/WhatsApp Image 2026-07-24 at 09.54.55.jpeg'
+import galponEstructura from '../assets/WhatsApp Image 2026-07-24 at 09.54.53 (2).jpeg'
+import galponInterior from '../assets/WhatsApp Image 2026-07-24 at 09.56.36 (1).jpeg'
+import acabadosInteriores from '../assets/562ad250-ad0e-4b7d-ad60-0c91db9eaf3e(1).JPG'
+import montajeAndamio from '../assets/IMG_2807.jpg'
+import corredorResidencial from '../assets/IMG_0584.jpg'
+import divisionDobleAltura from '../assets/IMG_2816.jpg'
+import estructuraObra from '../assets/IMG_6267.jpg'
+import detalleInterior from '../assets/IMG_0468.jpg'
+import construpanelLogo from '../assets/construpanel-logo.png'
+
+export {
+  construpanelLogo,
+  obraTerminada,
+  entradaObra,
+  muroConLogo,
+  techoReal,
+  caminoConstruido,
+  techoLamina,
+  industrialSilos,
+  galponEstructura,
+  galponInterior,
+  acabadosInteriores,
+  montajeAndamio,
+  corredorResidencial,
+  divisionDobleAltura,
+  estructuraObra,
+  detalleInterior,
+}
+
+// Lista de WhatsApp para alternar números en cada clic (750 22244 / 773 94185)
+export const whatsappContacts = [
+  { phone: '59175022244', display: '750 22244' },
+  { phone: '59177394185', display: '773 94185' },
+]
+
 export const whatsapp = 'https://wa.me/59175022244?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20con%20Construpanel.'
 
 export const heroSlides = [
   {
-    image: modelHomeFinished,
-    overline: 'Casa modelo · 100% Construpanel',
-    title: '100 m² construidos en 40 días.',
-    description: 'Caso documentado llave en mano. Autoportante hasta 3 m y sin columnas en esta configuración específica.',
-    metric: 'DÍA 40',
-    fit: 'center 54%',
+    image: obraTerminada,
+    overline: 'Casa terminada · 100% Construpanel',
+    title: 'Construcción veloz, termoacústica y definitiva.',
+    description: 'Caso documentado llave en mano. Estructura sin fisuras, aislación térmica y acústica superior sin necesidad de revoque.',
+    metric: '7 DÍAS',
+    fit: 'center 45%',
   },
   {
-    image: siemensCorridor,
-    overline: 'Termoeléctrica de Warnes · Siemens',
-    title: 'Oficinas que pueden moverse con la obra.',
-    description: 'Módulos temporales construidos con paneles desmontables, con hasta 80% de reutilización según el sistema de montaje.',
-    metric: 'REUSO 80%',
-    fit: 'center',
+    image: industrialSilos,
+    overline: 'Nave industrial & acopio · Santa Cruz',
+    title: 'Cerramientos perimetrales a gran escala.',
+    description: 'Combinación de perfiles metálicos y panel sándwich de rápida colocación. Solución duradera y libre de mantenimiento.',
+    metric: 'GRAN ESCALA',
+    fit: 'center 48%',
   },
   {
-    image: warehouseDivision,
-    overline: 'Cerramiento industrial',
-    title: 'Una división de galpón en 4 días.',
-    description: 'Caso real de montaje rápido para crear nuevos ambientes dentro de una estructura existente.',
-    metric: '4 DÍAS',
-    fit: 'center',
+    image: galponEstructura,
+    overline: 'Tinglado comercial en ejecución',
+    title: 'Muros modulares bajo cubierta metálica.',
+    description: 'Obra limpia en seco. Autoportante, liviano y con encastre macho-hembra para un avance continuo sin desperdicios.',
+    metric: 'OBRA LIMPIA',
+    fit: 'center 50%',
   },
   {
-    image: uruboExterior,
-    overline: 'Proyecto Oficinas del Urubó',
-    title: 'Del panel al espacio terminado.',
-    description: 'Muros compatibles con estructura metálica, listos para macillar, pintar y recibir distintos acabados.',
-    metric: 'OBRA REAL',
-    fit: 'center',
+    image: acabadosInteriores,
+    overline: 'Acabados interiores en seco',
+    title: 'Paredes listas para pintar sin revoque.',
+    description: 'Tratamiento de juntas directo. Ahorro sustancial en tiempo de secado, mano de obra y materiales húmedos.',
+    metric: 'SIN REVOQUE',
+    fit: 'center 35%',
   },
 ]
 
@@ -62,26 +105,121 @@ export const panelOptions = [
 ]
 
 export const buildSteps = [
-  { day: 'Día 01', title: 'Base e instalaciones', text: 'La obra arranca con la cimentación y la previsión de recorridos antes del montaje.', image: modelDay1, fit: 'center' },
-  { day: 'Día 20', title: 'Muros montados', text: 'Los paneles definen la vivienda y permiten avanzar con instalaciones y estructura de cubierta.', image: modelDay20, fit: 'center' },
-  { day: 'Día 40', title: 'Casa terminada', text: 'Cierre del caso documentado de 100 m², construido llave en mano con el sistema.', image: modelDay40, fit: 'center' },
+  {
+    day: '1 día',
+    title: 'Fijación de guías y montaje de muros',
+    text: 'La obra arranca con soleras niveladas y el levantamiento veloz de los primeros paneles termoacústicos con encastre macho-hembra.',
+    image: muroConLogo,
+    fit: 'center 40%',
+  },
+  {
+    day: '3 días',
+    title: 'Muros completos y estructura de techo',
+    text: 'Cerramientos perimetrales e interiores concluidos, integrados a cerchas metálicas y paneles de cubierta con aislamiento térmico.',
+    image: techoReal,
+    fit: 'center',
+  },
+  {
+    day: '7 días',
+    title: 'Obra terminada y lista para entrega',
+    text: 'Vivienda completada con acabados finos, puertas, ventanas e instalaciones, lista para habitar con eficiencia termoacústica.',
+    image: obraTerminada,
+    fit: 'center 45%',
+  },
 ]
 
 export const projects = [
-  { image: siemensOffices, name: 'Termoeléctrica de Warnes', category: 'Industrial', detail: 'Oficinas temporales · Siemens', fact: 'Hasta 80% reutilizable' },
-  { image: warehouseInstallation, name: 'División de galpón', category: 'Industrial', detail: 'Montaje dentro de estructura existente', fact: 'Caso documentado: 4 días' },
-  { image: uruboInstallation, name: 'Oficinas del Urubó', category: 'Oficinas', detail: 'Muros y estructura en ejecución', fact: 'Sistema combinado con acero' },
-  { image: uruboOffices, name: 'Oficinas terminadas', category: 'Oficinas', detail: 'Acabados sobre Construpanel', fact: 'Listo para macillar y pintar' },
-  { image: restaurantBigman, name: 'BigManBurguer', category: 'Comercial', detail: 'Mesones y soluciones interiores', fact: 'El panel más allá del muro' },
-  { image: highRiseInstallation, name: 'Construcción en altura', category: 'Montaje', detail: 'Cuadrilla instalando paneles', fact: 'Fácil traslado entre pisos' },
+  {
+    image: obraTerminada,
+    name: 'Residencia Moderna',
+    category: 'Residencial',
+    detail: 'Casa completa 100% Construpanel',
+    fact: 'Entrega récord en 7 días',
+  },
+  {
+    image: entradaObra,
+    name: 'Fachada y Acceso Principal',
+    category: 'Residencial',
+    detail: 'Muros lisos con zócalo decorativo',
+    fact: 'Aislamiento termoacústico',
+  },
+  {
+    image: industrialSilos,
+    name: 'Complejo Industrial & Silos',
+    category: 'Industrial',
+    detail: 'Cerramientos perimetrales de gran altura',
+    fact: 'Montaje de alta velocidad',
+  },
+  {
+    image: galponEstructura,
+    name: 'Tinglado & Módulos Comerciales',
+    category: 'Comercial',
+    detail: 'Muros modulares con perfiles de acero',
+    fact: 'Construcción en seco',
+  },
+  {
+    image: montajeAndamio,
+    name: 'Montaje en Altura',
+    category: 'Montaje',
+    detail: 'Fijación de muros sobre andamios',
+    fact: '30 m² / jornal por operario',
+  },
+  {
+    image: acabadosInteriores,
+    name: 'Acabados y Cielorraso',
+    category: 'Interiores',
+    detail: 'Sellado de juntas sin revoque grueso',
+    fact: 'Superficie lista para pintura',
+  },
+  {
+    image: corredorResidencial,
+    name: 'Galería y Circulación Interior',
+    category: 'Residencial',
+    detail: 'Ambientes confortables y silenciosos',
+    fact: 'Sin fisuras ni humedad',
+  },
+  {
+    image: techoLamina,
+    name: 'Cubiertas Termoacústicas',
+    category: 'Cubiertas',
+    detail: 'Integración hermética de techo y muros',
+    fact: 'Protección térmica continua',
+  },
+  {
+    image: caminoConstruido,
+    name: 'Cerramientos y Pasillos Técnicos',
+    category: 'Cerramientos',
+    detail: 'Divisiones exteriores de alta durabilidad',
+    fact: 'Resistente a la intemperie',
+  },
 ]
 
 export const fieldNotes = [
-  { image: panelCutting, title: 'Se corta en obra', text: 'Una amoladora permite adaptar el panel a distintos tamaños y formas.', rotate: true },
-  { image: panelTransport, title: 'Se transporta entre pisos', text: 'El formato modular simplifica el movimiento dentro de la construcción.' },
-  { image: electricalInstallation, title: 'Recibe instalaciones', text: 'Las canalizaciones eléctricas pueden resolverse directamente sobre el muro.' },
-  { image: finishedCoating, title: 'Admite revestimientos', text: 'La superficie puede recibir acabados para cocinas, baños y otros ambientes.' },
-  { image: roofInterior, title: 'También resuelve cubiertas', text: 'La cubierta sándwich incorpora aislación y una cara interior prepintada.' },
+  {
+    image: montajeAndamio,
+    title: 'Montaje en seco ágil',
+    text: 'Las piezas modulares de 2,44 × 0,615 m se elevan y fijan rápidamente sin requerir encofrados ni tiempos de fraguado.',
+  },
+  {
+    image: galponInterior,
+    title: 'Estructura combinada',
+    text: 'Compatibilidad directa con vigas metálicas, hormigón o perfiles tubulares para cerramientos de cualquier altura.',
+  },
+  {
+    image: acabadosInteriores,
+    title: 'Sin revoque tradicional',
+    text: 'Las caras exteriores de fibrocemento o silicato de calcio solo requieren sellado de juntas para recibir pintura o textura.',
+  },
+  {
+    image: techoLamina,
+    title: 'Aislación térmica total',
+    text: 'El núcleo aislante frena el calor solar y reduce el ruido exterior, garantizando confort interior en cualquier clima.',
+  },
+  {
+    image: detalleInterior,
+    title: 'Admite revestimientos finos',
+    text: 'Soporta aplicaciones de madera decorativa, ladrillo visto, azulejos y elementos empotrados sin deteriorar el muro.',
+  },
 ]
 
 export const comparisons = [

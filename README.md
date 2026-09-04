@@ -73,9 +73,3 @@ npm run build
 ```
 
 ---
-
-## 📝 Notas de pendientes de diseño
-- Añadir espacios más espacios entrelineas de cada sección grande.
-- En la segunda sección poner fondo y centrar lo de la empresa y poner imagen de fondo con letras sobresalientes.
-- En la demostración por día cambiarlo a 1 día - 3 días - 7 días.
-- Cambiar el footer y en contactos y cambiar el WhatsApp.
