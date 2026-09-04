@@ -110,6 +110,8 @@ function App() {
             </p>
           </div>
 
+          {/* Bloque Qué resolvemos / Producimos-Dimensionamos-Instalamos (Oculto temporalmente) */}
+          {/*
           <div className="manifesto-body section-pad">
             <div className="manifesto-grid">
               <div className="manifesto-story">
@@ -124,14 +126,20 @@ function App() {
               </ol>
             </div>
           </div>
+          */}
         </section>
 
         {/* Sección 3: Laboratorio */}
         <section className="laboratory section-pad" id="laboratorio">
           <div className="section-head">
-            <div className="section-code"><span>02</span><p>Laboratorio del panel</p></div>
-            <div><p className="section-kicker">NO TODOS LOS MUROS PIDEN LO MISMO</p><h2>Cambia el espesor.<br />Cambia el desempeño.</h2></div>
-            <p className="section-summary">Explora el panel en 3D, separa sus capas y calcula una referencia de material, peso y jornadas para tu superficie.</p>
+            <div className="section-head-top">
+              <div className="section-code"><span>02</span><p>Laboratorio del panel</p></div>
+              <p className="section-kicker">NO TODOS LOS MUROS PIDEN LO MISMO</p>
+            </div>
+            <div className="section-head-main">
+              <h2>Cambia el espesor. Cambia el desempeño.</h2>
+              <p className="section-summary">Explora el panel en 3D, separa sus capas y calcula una referencia de material, peso y jornadas para tu superficie.</p>
+            </div>
           </div>
           <PanelLab />
           <div className="anatomy-strip">
@@ -144,10 +152,14 @@ function App() {
         {/* Sección 4: Demostración 1 día - 3 días - 7 días */}
         <section className="case-section section-pad" id="caso">
           <div className="case-copy">
-            <div className="section-code section-code-light"><span>03</span><p>Caso documentado</p></div>
-            <p className="section-kicker">AVANCE REAL / SANTA CRUZ</p>
-            <h2>De la base a la entrega en 7 días.</h2>
-            <p>Desliza el tiempo para recorrer el avance acelerado de una obra llave en mano realizada con paneles termoacústicos: desde la fijación de las primeras soleras hasta la culminación total.</p>
+            <div className="case-copy-top">
+              <div className="section-code section-code-light"><span>03</span><p>Caso documentado</p></div>
+              <p className="section-kicker">AVANCE REAL / SANTA CRUZ</p>
+            </div>
+            <div className="case-copy-main">
+              <h2>De la base a la entrega en 7 días.</h2>
+              <p>Desliza el tiempo para recorrer el avance acelerado de una obra llave en mano realizada con paneles termoacústicos: desde la fijación de las primeras soleras hasta la culminación total.</p>
+            </div>
           </div>
           <BuildTimeline />
         </section>
@@ -155,9 +167,13 @@ function App() {
         {/* Sección 5: Obras */}
         <section className="works section-pad" id="obras">
           <div className="section-head works-head">
-            <div className="section-code"><span>04</span><p>Archivo de obras</p></div>
-            <div><p className="section-kicker">NO SON RENDERS. SON OBRAS.</p><h2>El panel puesto a trabajar.</h2></div>
-            <p className="section-summary">Viviendas residenciales, oficinas temporales, galpones industriales y montajes en altura. Arrastra el carrusel para recorrer el archivo real.</p>
+            <div className="section-head-top">
+              <div className="section-code"><span>04</span><p>Archivo de obras</p></div>
+              <p className="section-kicker">NO SON RENDERS. SON OBRAS.</p>
+            </div>
+            <div className="section-head-main">
+              <h2>El panel puesto a trabajar.</h2>
+            </div>
           </div>
           <ProjectReel />
         </section>
@@ -184,9 +200,14 @@ function App() {
         {/* Sección 5: Ficha técnica */}
         <section className="data-section section-pad" id="datos">
           <div className="data-heading">
-            <div className="section-code section-code-light"><span>05</span><p>Ficha técnica</p></div>
-            <div><p className="section-kicker">FICHA COMPARADA / MATERIAL INFORMATIVO</p><h2>Datos para especificar.</h2></div>
-            <p>Las cifras publicadas por Construpanel, puestas frente al muro de ladrillo descrito en su documentación técnica.</p>
+            <div className="data-heading-top">
+              <div className="section-code section-code-light"><span>05</span><p>Ficha técnica</p></div>
+              <p className="section-kicker">FICHA COMPARADA / MATERIAL INFORMATIVO</p>
+            </div>
+            <div className="data-heading-main">
+              <h2>Datos para especificar.</h2>
+              <p>Las cifras publicadas por Construpanel, puestas frente al muro de ladrillo descrito en su documentación técnica.</p>
+            </div>
           </div>
 
           <div className="comparison-table" role="table" aria-label="Comparación entre Construpanel y muro de ladrillo">
@@ -294,9 +315,21 @@ function App() {
               El sistema constructivo mediante muros prefabricados tipo sándwich más rápido de Bolivia: aislamiento térmico y acústico, sin necesidad de revoque. Hecho en Bolivia.
             </p>
             <div className="footer-socials" aria-label="Redes sociales">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube">YT</a>
+              <a href="https://www.facebook.com/construpanelsrl?locale=es_LA" target="_blank" rel="noreferrer" aria-label="Facebook de Construpanel" title="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/construpanelsrl/" target="_blank" rel="noreferrer" aria-label="Instagram de Construpanel" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/@construpanelsrl" target="_blank" rel="noreferrer" aria-label="YouTube de Construpanel" title="YouTube">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
             </div>
           </div>
 
