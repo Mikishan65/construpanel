@@ -82,14 +82,14 @@ function App() {
       <main id="main-content">
         <HeroCarousel onWhatsAppClick={handleWhatsAppClick} currentWhatsAppUrl={currentWhatsAppUrl} />
 
-        {/* Sección 2: Empresa con fondo de obra real, contenido centrado y tipografía sobresaliente */}
-        <section className="manifesto" id="empresa">
+        {/* Sección 2: Empresa con fondo de obra real completo a lo ancho */}
+        <section className="empresa-section" id="empresa">
           <div
             className="manifesto-banner"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(4, 21, 36, 0.82) 0%, rgba(6, 26, 44, 0.94) 100%), url(${obraTerminada})`,
+              backgroundImage: `linear-gradient(180deg, rgba(4, 21, 36, 0.55) 0%, rgba(5, 26, 46, 0.7) 45%, rgba(6, 26, 44, 0.92) 100%), url(${obraTerminada})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 42%',
+              backgroundPosition: 'center 38%',
             }}
           >
             <div className="section-code section-code-light manifesto-badge">
@@ -110,24 +110,19 @@ function App() {
             </p>
           </div>
 
-          <div className="manifesto-grid">
-            <div className="manifesto-story">
-              <span className="micro-label">QUÉ RESOLVEMOS</span>
-              <p>Construpanel concentra estructura de muro, aislación y superficie de acabado en una pieza modular. Menos carga, menos etapas húmedas y una obra que puede avanzar desde el primer panel.</p>
-              <p>El sistema se integra con estructuras de acero, hormigón o madera y puede aplicarse en viviendas, oficinas, divisiones industriales, campamentos y soluciones especiales.</p>
+          <div className="manifesto-body section-pad">
+            <div className="manifesto-grid">
+              <div className="manifesto-story">
+                <span className="micro-label">QUÉ RESOLVEMOS</span>
+                <p>Construpanel concentra estructura de muro, aislación y superficie de acabado en una pieza modular. Menos carga, menos etapas húmedas y una obra que puede avanzar desde el primer panel.</p>
+                <p>El sistema se integra con estructuras de acero, hormigón o madera y puede aplicarse en viviendas, oficinas, divisiones industriales, campamentos y soluciones especiales.</p>
+              </div>
+              <ol className="service-sequence">
+                <li><span>01</span><div><b>Producimos</b><p>Paneles de 2,44 × 0,615 m en cuatro espesores.</p></div></li>
+                <li><span>02</span><div><b>Dimensionamos</b><p>Revisamos planos y definimos cantidades para cada proyecto.</p></div></li>
+                <li><span>03</span><div><b>Instalamos</b><p>Ejecutamos el montaje y resolvemos encuentros en obra.</p></div></li>
+              </ol>
             </div>
-            <ol className="service-sequence">
-              <li><span>01</span><div><b>Producimos</b><p>Paneles de 2,44 × 0,615 m en cuatro espesores.</p></div></li>
-              <li><span>02</span><div><b>Dimensionamos</b><p>Revisamos planos y definimos cantidades para cada proyecto.</p></div></li>
-              <li><span>03</span><div><b>Instalamos</b><p>Ejecutamos el montaje y resolvemos encuentros en obra.</p></div></li>
-            </ol>
-          </div>
-
-          <div className="fact-ribbon" aria-label="Cifras principales del sistema">
-            <div><span>FORMATO</span><b>2,44 × 0,615</b><small>metros</small></div>
-            <div><span>SUPERFICIE</span><b>1,50</b><small>m² / panel</small></div>
-            <div><span>RENDIMIENTO</span><b>30</b><small>m² / jornal-op.</small></div>
-            <div><span>PESO INICIAL</span><b>40,33</b><small>kg / m²</small></div>
           </div>
         </section>
 
@@ -167,7 +162,8 @@ function App() {
           <ProjectReel />
         </section>
 
-        {/* Sección 6: Cuaderno de campo */}
+        {/* Sección 6: Cuaderno de campo (Oculto temporalmente) */}
+        {/*
         <section className="field-section">
           <div className="field-title">
             <div className="section-code" style={{ marginBottom: '24px' }}><span>05</span><p>Cuaderno de campo</p></div>
@@ -183,11 +179,12 @@ function App() {
             ))}
           </div>
         </section>
+        */}
 
-        {/* Sección 7: Ficha técnica */}
+        {/* Sección 5: Ficha técnica */}
         <section className="data-section section-pad" id="datos">
           <div className="data-heading">
-            <div className="section-code section-code-light"><span>06</span><p>Ficha técnica</p></div>
+            <div className="section-code section-code-light"><span>05</span><p>Ficha técnica</p></div>
             <div><p className="section-kicker">FICHA COMPARADA / MATERIAL INFORMATIVO</p><h2>Datos para especificar.</h2></div>
             <p>Las cifras publicadas por Construpanel, puestas frente al muro de ladrillo descrito en su documentación técnica.</p>
           </div>
@@ -211,10 +208,10 @@ function App() {
           </div>
         </section>
 
-        {/* Sección 8: Aplicaciones */}
+        {/* Sección 6: Aplicaciones */}
         <section className="applications">
           <div className="applications-title">
-            <div className="section-code" style={{ marginBottom: '24px' }}><span>07</span><p>Escalas de aplicación</p></div>
+            <div className="section-code" style={{ marginBottom: '24px' }}><span>06</span><p>Escalas de aplicación</p></div>
             <h2>¿Dónde puede entrar?</h2>
           </div>
           <div className="application-list">
@@ -232,7 +229,11 @@ function App() {
           </div>
         </section>
 
-        {/* Sección 9: Preguntas frecuentes */}
+        {/* =========================================================================
+            COMPONENTES OCULTOS TEMPORALMENTE (Conservados para reactivar cuando se desee)
+            ========================================================================= */}
+
+        {/*
         <section className="faq-section section-pad">
           <div className="faq-intro"><span>ANTES DE CONSTRUIR</span><h2>Lo que conviene saber.</h2><p>Una respuesta clara antes de que el proyecto entre a cómputo.</p></div>
           <div className="faq-list">
@@ -242,9 +243,10 @@ function App() {
             })}
           </div>
         </section>
+        */}
 
-        {/* Sección 10: Contacto */}
-        <section className="contact-section" id="contacto">
+        {/*
+        <section className="contact-section" id="mesa-planos">
           <div className="contact-blueprint" aria-hidden="true"><i></i><i></i><i></i><i></i><span>0,615</span></div>
           <div className="contact-copy">
             <div className="section-code section-code-light" style={{ marginBottom: '28px' }}><span>08</span><p>Mesa de planos</p></div>
@@ -277,10 +279,11 @@ function App() {
             </div>
           </div>
         </section>
+        */}
       </main>
 
       {/* Nuevo Footer idéntico al diseño de referencia */}
-      <footer className="custom-footer">
+      <footer className="custom-footer" id="contacto">
         <div className="footer-top">
           {/* Columna 1: Marca y descripción */}
           <div className="footer-col footer-col-brand">
