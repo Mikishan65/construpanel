@@ -120,7 +120,7 @@ function App() {
 
         <section className="field-section">
           <div className="field-title">
-            <span>05 / CUADERNO DE CAMPO</span>
+            <div className="section-code" style={{ marginBottom: '24px' }}><span>05</span><p>Cuaderno de campo</p></div>
             <h2>Así se comporta<br />cuando entra a obra.</h2>
             <p>No solo mostramos el resultado. Estas imágenes documentan corte, traslado, instalaciones, acabados y cubierta.</p>
           </div>
@@ -136,7 +136,7 @@ function App() {
 
         <section className="data-section section-pad" id="datos">
           <div className="data-heading">
-            <div className="data-sheet-mark"><b>CP</b><span>FT—01<br />DATOS DE FÁBRICA</span></div>
+            <div className="section-code section-code-light"><span>06</span><p>Ficha técnica</p></div>
             <div><p className="section-kicker">FICHA COMPARADA / MATERIAL INFORMATIVO</p><h2>Datos para especificar.</h2></div>
             <p>Las cifras publicadas por Construpanel, puestas frente al muro de ladrillo descrito en su documentación técnica.</p>
           </div>
@@ -161,7 +161,10 @@ function App() {
         </section>
 
         <section className="applications">
-          <div className="applications-title"><span>07 / UN MÓDULO, DISTINTAS ESCALAS</span><h2>¿Dónde puede entrar?</h2></div>
+          <div className="applications-title">
+            <div className="section-code" style={{ marginBottom: '24px' }}><span>07</span><p>Escalas de aplicación</p></div>
+            <h2>¿Dónde puede entrar?</h2>
+          </div>
           <div className="application-list">
             {['Viviendas y ampliaciones', 'Oficinas y campamentos', 'Galpones y divisiones', 'Edificios y hospitales', 'Restaurantes y comercio', 'Cubiertas y soluciones especiales'].map((item, index) => <a href={whatsapp} target="_blank" rel="noreferrer" key={item}><span>{String(index + 1).padStart(2, '0')}</span><b>{item}</b><i>Consultar <Arrow /></i></a>)}
           </div>
@@ -179,7 +182,12 @@ function App() {
 
         <section className="contact-section" id="contacto">
           <div className="contact-blueprint" aria-hidden="true"><i></i><i></i><i></i><i></i><span>0,615</span></div>
-          <div className="contact-copy"><span>08 / MESA DE PLANOS</span><h2>Del archivo<br />a la obra.</h2><p>Envíanos los planos editables de tu proyecto. Revisaremos superficie, espesores, encuentros y alcance de instalación.</p><a href={whatsapp} target="_blank" rel="noreferrer">Enviar planos por WhatsApp <Arrow /></a></div>
+          <div className="contact-copy">
+            <div className="section-code section-code-light" style={{ marginBottom: '28px' }}><span>08</span><p>Mesa de planos</p></div>
+            <h2>Del archivo<br />a la obra.</h2>
+            <p>Envíanos los planos editables de tu proyecto. Revisaremos superficie, espesores, encuentros y alcance de instalación.</p>
+            <a href={whatsapp} target="_blank" rel="noreferrer">Enviar planos por WhatsApp <Arrow /></a>
+          </div>
           <div className="contact-checklist"><span>PARA PREPARAR LA COTIZACIÓN</span><ul><li><b>01</b>Plano AutoCAD o vectorial</li><li><b>02</b>Ubicación del proyecto</li><li><b>03</b>Uso de cada ambiente</li><li><b>04</b>Alcance de instalación</li></ul><div><a href="tel:+59175022244">+591 750 22244</a><a href="mailto:contacto@construpanel.com.bo">contacto@construpanel.com.bo</a></div></div>
         </section>
       </main>
