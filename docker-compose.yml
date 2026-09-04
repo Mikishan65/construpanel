@@ -7,9 +7,7 @@ services:
     container_name: construpanel
     restart: unless-stopped
     ports:
-      # Puerto mapeado en el VPS: por defecto 80 (HTTP estándar).
-      # Si en el VPS ya tienes un proxy inverso (Nginx Proxy Manager, Traefik, etc.),
-      # puedes cambiar el puerto externo en el archivo .env (ej. PORT=8080).
-      - "${PORT:-80}:80"
+      # Puerto mapeado en el VPS: por defecto 9085 (puerto personalizado y poco común).
+      - "${PORT:-9085}:9085"
     environment:
       - NODE_ENV=production
