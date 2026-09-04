@@ -2,6 +2,10 @@ node_modules
 dist
 .git
 .gitignore
-Dockerfile
-compose.yml
+.env
+.env.local
+Dockerfile*
+compose*.yml
+docker-compose*.yml
 npm-debug.log*
+Doc

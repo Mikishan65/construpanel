@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: dev
+    container_name: construpanel-dev
     ports:
       - "5173:5173"
     volumes:
